@@ -1,4 +1,7 @@
 import { Component } from 'react';
+import PropTypes from 'prop-types';
+
+import { ContactFormContainer } from './ContactForm.styled';
 
 const INITIAL_STATE = {
   name: '',
@@ -28,7 +31,7 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.handleSubmit}>
+      <ContactFormContainer onSubmit={this.handleSubmit}>
         <label>
           Name
           <input
@@ -54,9 +57,13 @@ class ContactForm extends Component {
           />
         </label>
         <button type="submit">Add contact</button>
-      </form>
+      </ContactFormContainer>
     );
   }
 }
+
+ContactForm.propTypes = {
+  addContact: PropTypes.func.isRequired,
+};
 
 export default ContactForm;
