@@ -20,8 +20,7 @@ class ContactForm extends Component {
     const newContact = {
       ...this.state,
     };
-    this.props.addContact(newContact);
-    this.reset();
+    this.props.addContact(newContact, this.reset);
   };
 
   reset = () => {

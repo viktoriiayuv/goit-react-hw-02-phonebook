@@ -16,7 +16,7 @@ class App extends Component {
     filter: '',
   };
 
-  addContact = contact => {
+  addContact = (contact, reset) => {
     const { contacts } = this.state;
     const newContact = {
       ...contact,
@@ -25,11 +25,15 @@ class App extends Component {
     const isInContacts = contacts.some(
       contact => contact.name.toLowerCase() === newContact.name.toLowerCase()
     );
-    isInContacts && alert(`${newContact.name} is already in contacts`);
-    !isInContacts &&
+
+    if (isInContacts) {
+      alert(`${newContact.name} is already in contacts`);
+    } else {
       this.setState(prevState => ({
         contacts: [...prevState.contacts, newContact],
       }));
+      reset();
+    }
   };
 
   deleteContact = id => {
